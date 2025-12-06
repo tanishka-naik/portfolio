@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Application / Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f6ff;
+      padding: 20px;
+    }
+    .container {
+      width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 { text-align: center; }
+    label { font-weight: bold; }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #4a74f5;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover { background: #355fe0; }
+
+    #resultBox {
+      margin-top: 25px;
+      background: #e8f0ff;
+      padding: 15px;
+      border-radius: 10px;
+      display: none;
+    }
+    .item { margin-bottom: 10px; }
+  </style>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Registration Form</h2>
+
+    <form id="regForm">
+      <label>Full Name</label>
+      <input type="text" id="name" required />
+
+      <label>Email</label>
+      <input type="email" id="email" required />
+
+      <label>Phone Number</label>
+      <input type="text" id="phone" required />
+
+      <label>Gender</label>
+      <select id="gender" required>
+        <option value="">Select</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="resultBox">
+      <h3>Submitted Information</h3>
+      <div class="item" id="rName"></div>
+      <div class="item" id="rEmail"></div>
+      <div class="item" id="rPhone"></div>
+      <div class="item" id="rGender"></div>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function(){
+      $("#regForm").on("submit", function(e){
+        e.preventDefault();
+
+        const name = $("#name").val();
+        const email = $("#email").val();
+        const phone = $("#phone").val();
+        const gender = $("#gender").val();
+
+        if(name && email && phone && gender){
+          $("#rName").text("Name: " + name);
+          $("#rEmail").text("Email: " + email);
+          $("#rPhone").text("Phone: " + phone);
+          $("#rGender").text("Gender: " + gender);
+
+          $("#resultBox").slideDown();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
